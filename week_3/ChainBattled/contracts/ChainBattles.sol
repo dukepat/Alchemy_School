@@ -7,6 +7,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 
+// COntract Address: 0xB4cAaf44a81BC8DF3AE640C1f8aFc37832BBdffB
 contract ChainBattles is ERC721URIStorage {
     using Strings for uint256;
     using Counters for Counters.Counter; 
