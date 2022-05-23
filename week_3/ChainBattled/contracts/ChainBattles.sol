@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 
-// COntract Address: 0xB4cAaf44a81BC8DF3AE640C1f8aFc37832BBdffB
+// COntract Address: 0x1F3096B0Bdd5d890E3040aDEaba501b1a87f3716
 contract ChainBattles is ERC721URIStorage {
     using Strings for uint256;
     using Counters for Counters.Counter; 
@@ -61,9 +61,9 @@ contract ChainBattles is ERC721URIStorage {
             '<rect width="100%" height="100%" fill="black" />',
             '<text x="50%" y="40%" class="base" dominant-baseline="middle" text-anchor="middle">',"Warrior",'</text>',
             '<text x="50%" y="50%" class="base" dominant-baseline="middle" text-anchor="middle">', "Levels: ",getLevels(tokenId),'</text>',
-            '<text x="50%" y="50%" class="base" dominant-baseline="middle" text-anchor="middle">', "Strength: ",getStrength(tokenId),'</text>',
-            '<text x="50%" y="50%" class="base" dominant-baseline="middle" text-anchor="middle">', "Speed: ",getSpeed(tokenId),'</text>',
-            '<text x="50%" y="50%" class="base" dominant-baseline="middle" text-anchor="middle">', "Life: ",getLife(tokenId),'</text>',
+            '<text x="50%" y="60%" class="base" dominant-baseline="middle" text-anchor="middle">', "Strength: ",getStrength(tokenId),'</text>',
+            '<text x="50%" y="70%" class="base" dominant-baseline="middle" text-anchor="middle">', "Speed: ",getSpeed(tokenId),'</text>',
+            '<text x="50%" y="80%" class="base" dominant-baseline="middle" text-anchor="middle">', "Life: ",getLife(tokenId),'</text>',
             '</svg>'
         );
         return string(
@@ -91,17 +91,15 @@ contract ChainBattles is ERC721URIStorage {
     }
 
     function mint() public {
-
         _tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
         _safeMint(msg.sender, newItemId);
-        Props  memory newProps = Props({
+        tokenIdToProps[newItemId] = Props({
             level: 0,
-            strength: random(1),
-            speed: random(0),
-            life: random(5)
+            strength: random(20),
+            speed: random(100),
+            life: random(20)
         });
-        tokenIdToProps[newItemId] = newProps;
         // tokenIdToLevels[newItemId] = 0;
         _setTokenURI(newItemId, getTokenURI(newItemId));
     }
