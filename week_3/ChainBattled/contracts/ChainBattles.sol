@@ -7,7 +7,8 @@ import "@openzeppelin/contracts/utils/Counters.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/utils/Base64.sol";
 
-// COntract Address: 0x1F3096B0Bdd5d890E3040aDEaba501b1a87f3716
+// Contract Address: 0x1F3096B0Bdd5d890E3040aDEaba501b1a87f3716
+// Second Contract: 0x3AE2c1Ea4E426B833415b62E627185c6368707de
 contract ChainBattles is ERC721URIStorage {
     using Strings for uint256;
     using Counters for Counters.Counter; 
@@ -58,12 +59,12 @@ contract ChainBattles is ERC721URIStorage {
         bytes memory svg = abi.encodePacked(
             '<svg xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 350 350">',
             '<style>.base { fill: white; font-family: serif; font-size: 14px; }</style>',
-            '<rect width="100%" height="100%" fill="black" />',
+            '<rect width="100%" height="100%" style="fill:blue;stroke:black;stroke-width:5;opacity:0.5"/>',
             '<text x="50%" y="40%" class="base" dominant-baseline="middle" text-anchor="middle">',"Warrior",'</text>',
-            '<text x="50%" y="50%" class="base" dominant-baseline="middle" text-anchor="middle">', "Levels: ",getLevels(tokenId),'</text>',
-            '<text x="50%" y="60%" class="base" dominant-baseline="middle" text-anchor="middle">', "Strength: ",getStrength(tokenId),'</text>',
-            '<text x="50%" y="70%" class="base" dominant-baseline="middle" text-anchor="middle">', "Speed: ",getSpeed(tokenId),'</text>',
-            '<text x="50%" y="80%" class="base" dominant-baseline="middle" text-anchor="middle">', "Life: ",getLife(tokenId),'</text>',
+            '<text x="25%" y="50%" class="base" dominant-baseline="middle" text-anchor="middle">', "Levels: ",getLevels(tokenId),'</text>',
+            '<text x="75%" y="50%" class="base" dominant-baseline="middle" text-anchor="middle">', "Strength: ",getStrength(tokenId),'</text>',
+            '<text x="25%" y="70%" class="base" dominant-baseline="middle" text-anchor="middle">', "Speed: ",getSpeed(tokenId),'</text>',
+            '<text x="75%" y="70%" class="base" dominant-baseline="middle" text-anchor="middle">', "Life: ",getLife(tokenId),'</text>',
             '</svg>'
         );
         return string(
@@ -96,9 +97,9 @@ contract ChainBattles is ERC721URIStorage {
         _safeMint(msg.sender, newItemId);
         tokenIdToProps[newItemId] = Props({
             level: 0,
-            strength: random(20),
-            speed: random(100),
-            life: random(20)
+            strength: random(25),
+            speed: random(55),
+            life: random(21)
         });
         // tokenIdToLevels[newItemId] = 0;
         _setTokenURI(newItemId, getTokenURI(newItemId));
@@ -109,9 +110,9 @@ contract ChainBattles is ERC721URIStorage {
         require(ownerOf(tokenId) == msg.sender, "You must own this NFT to train it!");
         uint256 currentLevel = tokenIdToProps[tokenId].level;
         tokenIdToProps[tokenId].level = currentLevel + 1;
-        tokenIdToProps[tokenId].strength = random(tokenIdToProps[tokenId].strength + 1);
-        tokenIdToProps[tokenId].speed = random(tokenIdToProps[tokenId].speed + 1);
-        tokenIdToProps[tokenId].life = random(tokenIdToProps[tokenId].life + 1);
+        tokenIdToProps[tokenId].strength = random(tokenIdToProps[tokenId].strength + 21);
+        tokenIdToProps[tokenId].speed = random(tokenIdToProps[tokenId].speed + 13);
+        tokenIdToProps[tokenId].life = random(tokenIdToProps[tokenId].life + 15);
         _setTokenURI(tokenId, getTokenURI(tokenId));
     }
 
