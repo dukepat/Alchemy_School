@@ -11,7 +11,6 @@ export const NFTCard = ({ nft }) => {
                 <p className="text-gray-600">Id: {nft.id.tokenId}</p>
                 <p className="text-gray-600" >{nft.contract.address}</p>
             </div>
-
             <div className="flex-grow mt-2">
                 <p className="text-gray-600">{nft.description}</p>
             </div>

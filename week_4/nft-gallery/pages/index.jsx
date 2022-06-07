@@ -12,11 +12,12 @@ const Home = () => {
   const [fetchForCollection, setFetchForCollection] = useState(false);
 
 
-  async function fetchNFTs() {
+  const fetchNFTs = async() => {
     let nfts; 
     console.log("fetching nfts");
     const api_key = "uD_ahfG7ifKDX-uLy5U4xRmVf86DqwNK"
-    const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${api_key}/getNFTs/`;
+    const baseURL = `https://polygon-mumbai.g.alchemy.com/v2/${api_key}/getNFTs/`;
+    
     var requestOptions = {
         method: 'GET'
       };
@@ -38,13 +39,13 @@ const Home = () => {
     }
   }
 
-  async function fetchNFTsForCollection() {
+  const fetchNFTsForCollection = async() => {
     if (collection.length) {
       var requestOptions = {
         method: 'GET'
       };
       const api_key = "uD_ahfG7ifKDX-uLy5U4xRmVf86DqwNK"
-      const baseURL = `https://eth-mainnet.alchemyapi.io/v2/${api_key}/getNFTsForCollection/`;
+      const baseURL = `https://polygon-mumbai.g.alchemy.com/v2/${api_key}/getNFTsForCollection/`;
       const fetchURL = `${baseURL}?contractAddress=${collection}&withMetadata=${"true"}`;
       const nfts = await fetch(fetchURL, requestOptions).then(data => data.json())
       if (nfts) {
